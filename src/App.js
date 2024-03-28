@@ -10,10 +10,19 @@ const App = () => {
   const [filteredMonsters, setFilterMonsters] = useState(monsters);
 
   useEffect(() => {
+    async function getMonsters() {
+      const answer = await fetch('https://jsonplaceholder.typicode.com/users')
+      const users = await answer.json()
+      setMonsters((users))
+    }
+    /*
     fetch('https://jsonplaceholder.typicode.com/users')
       .then((response) => response.json())
       .then((users) => setMonsters(users));
+    */
+    getMonsters()
   }, []);
+
 
   useEffect(() => {
     const newFilteredMonsters = monsters.filter((monster) => {
